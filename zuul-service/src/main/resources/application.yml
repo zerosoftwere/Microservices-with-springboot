@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: zuul-service
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+zuul:
+  ignoredServices: "*"
+  routes:
+    restaurantapi:
+      path: /v1/restaurants/**
+      serviceId: restaurant-service
+      stripPrefix: false
+    userapi:
+      path: /v1/users/**
+      serviceId: user-service
+      stripPrefix: false
+
+server:
+  port: 8100
